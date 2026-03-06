@@ -193,13 +193,53 @@
     @media (max-width: 480px) {
       .team-4-grid { grid-template-columns: 1fr; }
     }
+
+    /* ── Sidebar ── */
+    .sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.55); backdrop-filter: blur(2px); z-index: 1998; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
+    .sidebar-overlay.open { opacity: 1; pointer-events: all; }
+    .sidebar { position: fixed; top: 0; right: 0; width: 300px; height: 100vh; background: #0a0a0a; z-index: 1999; display: flex; flex-direction: column; transform: translateX(100%); transition: transform 0.38s cubic-bezier(0.4,0,0.2,1); overflow-y: auto; }
+    .sidebar.open { transform: translateX(0); }
+    .sidebar-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .sidebar-logo { height: 44px; width: auto; object-fit: contain; }
+    .sidebar-close { background: none; border: none; cursor: pointer; padding: 6px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.7); border-radius: 8px; transition: background 0.2s; }
+    .sidebar-close:hover { background: rgba(255,255,255,0.08); color: #fff; }
+    .sidebar-close svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
+    .sidebar-nav { flex: 1; padding: 24px 16px; display: flex; flex-direction: column; gap: 4px; }
+    .sidebar-nav a { display: flex; align-items: center; gap: 12px; font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 0.95rem; color: rgba(255,255,255,0.75); padding: 12px 16px; border-radius: 10px; text-decoration: none; transition: all 0.2s ease; }
+    .sidebar-nav a:hover, .sidebar-nav a.active { background: rgba(32,189,115,0.12); color: #20BD73; }
+    .sidebar-nav a .nav-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.2); flex-shrink: 0; transition: background 0.2s; }
+    .sidebar-nav a:hover .nav-dot, .sidebar-nav a.active .nav-dot { background: #20BD73; }
+    .sidebar-divider { height: 1px; background: rgba(255,255,255,0.07); margin: 8px 16px; }
+    .sidebar-footer { padding: 20px 24px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .sidebar-footer a { display: block; background: #20BD73; color: #fff; text-align: center; font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 0.95rem; padding: 14px 24px; border-radius: 10px; text-decoration: none; transition: background 0.2s; }
+    .sidebar-footer a:hover { background: #18a562; }
+    .sidebar-tagline { text-align: center; font-size: 0.72rem; color: rgba(255,255,255,0.25); margin-top: 16px; font-family: 'Open Sans', sans-serif; letter-spacing: 1px; text-transform: uppercase; }
   </style>
 </head>
 <body>
 
-  <div id="loader-wrapper">
-  <span class="loader"></span>
-</div>
+  <div id="loader-wrapper"><span class="loader"></span></div>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <img src="images/black-logo.png" alt="TMS Logo" class="sidebar-logo" onerror="this.style.display='none';" />
+      <button class="sidebar-close" id="sidebarClose" aria-label="Close menu">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="index.html"><span class="nav-dot"></span>Home</a>
+      <a href="about.html" class="active"><span class="nav-dot"></span>About</a>
+      <a href="platform.html"><span class="nav-dot"></span>Services &amp; Budget</a>
+      <a href="strategy.html"><span class="nav-dot"></span>Strategy</a>
+      <div class="sidebar-divider"></div>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="contact.html">Contact Us</a>
+      <p class="sidebar-tagline">Experience Consolidated Convenience</p>
+    </div>
+  </aside>
 
   <nav class="navbar white-bg" id="navbar">
     <div class="container">
@@ -217,7 +257,7 @@
           <li><a href="strategy.html">Strategy</a></li>
           <li><a href="contact.html" class="btn-nav">Contact Us</a></li>
         </ul>
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -514,5 +554,17 @@
   </footer>
 
   <script src="js/script.js"></script>
+  <script>
+    var sidebar = document.getElementById('sidebar');
+    var sidebarOverlay = document.getElementById('sidebarOverlay');
+    var navToggle = document.getElementById('navToggle');
+    var sidebarClose = document.getElementById('sidebarClose');
+    function openSidebar() { sidebar.classList.add('open'); sidebarOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; navToggle.setAttribute('aria-expanded', 'true'); }
+    function closeSidebar() { sidebar.classList.remove('open'); sidebarOverlay.classList.remove('open'); document.body.style.overflow = ''; navToggle.setAttribute('aria-expanded', 'false'); }
+    navToggle.addEventListener('click', function() { sidebar.classList.contains('open') ? closeSidebar() : openSidebar(); });
+    sidebarClose.addEventListener('click', closeSidebar);
+    sidebarOverlay.addEventListener('click', closeSidebar);
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeSidebar(); });
+  </script>
 </body>
 </html>
