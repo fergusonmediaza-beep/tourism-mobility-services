@@ -97,6 +97,53 @@ p {
 .text-white { color: var(--white); }
 .text-black { color: var(--black); }
 
+
+#loader-wrapper {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4); /* semi-transparent so blur shows through */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+}
+
+#loader-wrapper.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader {
+  width: 8px;
+  height: 8px;
+  position: relative;
+  border-radius: 50%;
+  background: #20BD73;
+  animation: wave 1s ease-in infinite;
+}
+
+@keyframes wave {
+  0% {
+    box-shadow:
+      0 0 0 0px rgba(32, 189, 115, 1),
+      0 0 0 20px rgba(32, 189, 115, 0.2),
+      0 0 0 40px rgba(32, 189, 115, 0.6),
+      0 0 0 60px rgba(32, 189, 115, 0.4),
+      0 0 0 80px rgba(32, 189, 115, 0.2);
+  }
+  100% {
+    box-shadow:
+      0 0 0 80px rgba(32, 189, 115, 0),
+      0 0 0 60px rgba(32, 189, 115, 0.2),
+      0 0 0 40px rgba(32, 189, 115, 0.4),
+      0 0 0 20px rgba(32, 189, 115, 0.6),
+      0 0 0 0px rgba(32, 189, 115, 1);
+  }
+}
+
 /* ============================================
    LAYOUT UTILITIES
    ============================================ */

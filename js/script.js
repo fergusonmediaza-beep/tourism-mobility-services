@@ -182,5 +182,11 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('[data-count]').forEach(function (el) {
     counterObserver.observe(el);
   });
+window.addEventListener('load', () => {
+  const loader = document.getElementById('loader-wrapper');
+  loader.classList.add('hidden');
 
+  // Remove from DOM after fade completes
+  setTimeout(() => loader.remove(), 500);
+});
 });
