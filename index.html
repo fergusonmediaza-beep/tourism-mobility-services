@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Tourism Mobility Services (TMS) - South Africa's mobile super app digitizing and democratizing tourism mobility." />
+  <title>TMS - Tourism Mobility Services | Experience Consolidated Convenience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Biryani:wght@400;600;700;800;900&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .logo-placeholder { display: block; height: 56px; width: auto; max-width: 220px; object-fit: contain; transition: opacity 0.2s ease; }
+    .hero-mockup-img { width: 100%; max-width: 520px; height: auto; border-radius: 24px; display: block; object-fit: contain; }
+    @media (max-width: 1023px) { .hero-visual { display: none !important; } .hero-grid { grid-template-columns: 1fr !important; } }
+    .nav-toggle { display: none; }
+    .nav-links  { display: flex !important; }
+    @media (max-width: 768px) { .nav-toggle { display: flex !important; } .nav-links { display: none !important; } }
+    .feature-card { position: relative; overflow: hidden; background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; isolation: isolate; }
+    .feature-card::before { content: ''; position: absolute; inset: 0; background: rgba(5,15,10,0.92); z-index: 0; transition: background 0.3s ease; }
+    .feature-card:hover::before { background: rgba(5,15,10,0.80); }
+    .feature-card > * { position: relative; z-index: 1; }
+    .sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.55); backdrop-filter: blur(2px); z-index: 1998; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
+    .sidebar-overlay.open { opacity: 1; pointer-events: all; }
+    .sidebar { position: fixed; top: 0; right: 0; width: 300px; height: 100vh; background: #0a0a0a; z-index: 1999; display: flex; flex-direction: column; transform: translateX(100%); transition: transform 0.38s cubic-bezier(0.4,0,0.2,1); overflow-y: auto; }
+    .sidebar.open { transform: translateX(0); }
+    .sidebar-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .sidebar-logo { height: 44px; width: auto; object-fit: contain; }
+    .sidebar-close { background: none; border: none; cursor: pointer; padding: 6px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.7); border-radius: 8px; transition: background 0.2s; }
+    .sidebar-close:hover { background: rgba(255,255,255,0.08); color: #fff; }
+    .sidebar-close svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
+    .sidebar-nav { flex: 1; padding: 24px 16px; display: flex; flex-direction: column; gap: 4px; }
+    .sidebar-nav a { display: flex; align-items: center; gap: 12px; font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 0.95rem; color: rgba(255,255,255,0.75); padding: 12px 16px; border-radius: 10px; text-decoration: none; transition: all 0.2s ease; }
+    .sidebar-nav a:hover, .sidebar-nav a.active { background: rgba(32,189,115,0.12); color: #20BD73; }
+    .sidebar-nav a .nav-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.2); flex-shrink: 0; transition: background 0.2s; }
+    .sidebar-nav a:hover .nav-dot, .sidebar-nav a.active .nav-dot { background: #20BD73; }
+    .sidebar-divider { height: 1px; background: rgba(255,255,255,0.07); margin: 8px 16px; }
+    .sidebar-footer { padding: 20px 24px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .sidebar-footer a { display: block; background: #20BD73; color: #fff; text-align: center; font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 0.95rem; padding: 14px 24px; border-radius: 10px; text-decoration: none; transition: background 0.2s; }
+    .sidebar-footer a:hover { background: #18a562; }
+    .sidebar-tagline { text-align: center; font-size: 0.72rem; color: rgba(255,255,255,0.25); margin-top: 16px; font-family: 'Open Sans', sans-serif; letter-spacing: 1px; text-transform: uppercase; }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <img src="images/black-logo.png" alt="TMS Logo" class="sidebar-logo" onerror="this.style.display='none';" />
+      <button class="sidebar-close" id="sidebarClose" aria-label="Close menu">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="index.html" class="active"><span class="nav-dot"></span>Home</a>
+      <a href="about.html"><span class="nav-dot"></span>About</a>
+      <a href="platform.html"><span class="nav-dot"></span>Services &amp; Budget</a>
+      <a href="strategy.html"><span class="nav-dot"></span>Strategy</a>
+      <div class="sidebar-divider"></div>
+
+    </nav>
+    <div class="sidebar-footer">
+      <a href="contact.html">Contact Us</a>
+      <p class="sidebar-tagline">Experience Consolidated Convenience</p>
+    </div>
+  </aside>
+
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="index.html" class="navbar-logo">
+          <img id="navLogo" src="images/black-logo.png" alt="TMS - Tourism Mobility Services" class="logo-placeholder" onerror="this.style.outline='2px dashed rgba(32,189,115,0.5)';this.style.padding='4px 12px';this.style.borderRadius='6px';" />
+        </a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="platform.html">Services &amp; Budget</a></li>
+          <li><a href="strategy.html">Strategy</a></li>
+
+          <li><a href="contact.html" class="btn-nav">Contact Us</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-label">South Africa's Super App for Tourism</div>
+          <h1>Digitizing and <span>Democratizing</span> Tourism Mobility</h1>
+          <p>A unified mobile platform that consolidates ride-hailing, deliveries, professional services, fintech, and safety empowering travellers and local operators alike.</p>
+          <div class="hero-buttons">
+            <a href="platform.html" class="btn btn-primary btn-lg">Explore Services</a>
+            <a href="contact.html" class="btn btn-outline btn-lg">Become an Operator</a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat-item"><h3 data-count="8" data-suffix="+">0+</h3><p>Integrated Services</p></div>
+            <div class="hero-stat-item"><h3 data-count="1" data-suffix=" App">0</h3><p>Unified Platform</p></div>
+            <div class="hero-stat-item"><h3 data-count="24" data-suffix="/7">0</h3><p>Safety Coverage</p></div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img src="images/hero-mockup.png" alt="TMS App Mockup" class="hero-mockup-img" onerror="this.style.display='none';" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="problem-solution">
+    <div class="problem-col">
+      <div class="container" style="max-width:600px;margin:0;padding-right:0;">
+        <div class="ps-label">The Problem</div>
+        <h2>A Fragmented and Inaccessible Tourism Landscape</h2>
+        <p>Tourists and local travellers face a deeply fragmented mobility ecosystem with no unified solution. Multiple disconnected apps, inconsistent safety standards, and the exclusion of local operators create an environment of inconvenience, risk, and missed economic opportunity.</p>
+        <ul class="ps-list">
+          <li class="ps-list-item"><div class="ps-bullet"></div><p>No single platform consolidating rides, deliveries, and services</p></li>
+          <li class="ps-list-item"><div class="ps-bullet"></div><p>Inadequate safety infrastructure for solo and international travellers</p></li>
+          <li class="ps-list-item"><div class="ps-bullet"></div><p>Local operators excluded from formal digital economy</p></li>
+          <li class="ps-list-item"><div class="ps-bullet"></div><p>High commission models exploiting independent service providers</p></li>
+          <li class="ps-list-item"><div class="ps-bullet"></div><p>Lack of financial inclusion tools for informal economy participants</p></li>
+        </ul>
+      </div>
+    </div>
+    <div class="solution-col">
+      <div class="container" style="max-width:600px;margin:0;padding-left:0;">
+        <div class="ps-label">The Solution</div>
+        <h2>One Platform. Every Journey. Total Empowerment.</h2>
+        <p>TMS is a mobile super app that brings together every mobility and lifestyle service a tourist or local traveller needs on one intelligent platform, with embedded safety and fintech capabilities.</p>
+        <ul class="ps-list">
+          <li class="ps-list-item"><div class="ps-bullet"></div><p>Multi-modal transport: rides, cycles, walking tours, motorcycle delivery</p></li>
+          <li class="ps-list-item"><div class="ps-bullet"></div><p>Integrated panic button via Namola for real-time emergency response</p></li>
+          <li class="ps-list-item"><div class="ps-bullet"></div><p>Zero-commission B2B2C model empowering local operators</p></li>
+          <li class="ps-list-item"><div class="ps-bullet"></div><p>Smart digital coupons and payment gateway (Vodapay &amp; Nedbank)</p></li>
+          <li class="ps-list-item"><div class="ps-bullet"></div><p>Professional services marketplace for concierge and lifestyle needs</p></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="label">App Features</div>
+        <h2>Everything You Need. One Powerful App.</h2>
+        <p>The TMS platform consolidates a full ecosystem of mobility, professional, and financial services into a single, intuitive interface for both travellers and operators.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card" style="background-image: url('images/ride.png');"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3" stroke-linecap="round" stroke-linejoin="round"/><rect x="9" y="11" width="14" height="10" rx="2" ry="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="16" r="1" fill="currentColor" stroke="none"/></svg></div><h4>Ride 4 U</h4><p>On-demand motorcycle delivery and ride-hailing tailored for urban and tourism mobility. Fast, reliable, and affordably priced for both tourists and locals.</p></div>
+        <div class="feature-card" style="background-image: url('images/cycle.png');"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="1" stroke-linecap="round"/><path d="m6 16 4-2 2-3 3 2 3-4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="5" cy="18" r="2" stroke-linecap="round"/><circle cx="19" cy="18" r="2" stroke-linecap="round"/></svg></div><h4>Cycle 4 U</h4><p>Eco-conscious cycling services for sustainable urban exploration. Ideal for short distances, scenic routes, and eco-tourism experiences.</p></div>
+        <div class="feature-card" style="background-image: url('images/walk.png');"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 4a1 1 0 1 0 2 0 1 1 0 0 0-2 0" fill="currentColor" stroke="none"/><path d="m10 9 2-5 3 4-2 1 1 3-4 6H8l2-5-2-1z" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h4>Walk 4 U</h4><p>Guided walking tours and pedestrian mobility services curated for tourists wanting to experience destinations on foot with local expertise.</p></div>
+        <div class="feature-card" style="background-image: url('images/do-it.png');"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke-linecap="round" stroke-linejoin="round"/><polyline points="14 2 14 8 20 8" stroke-linecap="round" stroke-linejoin="round"/><line x1="16" y1="13" x2="8" y2="13" stroke-linecap="round"/><line x1="16" y1="17" x2="8" y2="17" stroke-linecap="round"/></svg></div><h4>Do it 4 U</h4><p>A professional services marketplace connecting travellers with vetted local professionals for concierge, admin, lifestyle, and business support needs.</p></div>
+        <div class="feature-card" style="background-image: url('images/plugin.png');"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h4>Plug-in Services</h4><p>Third-party service integrations that extend the platform's capabilities — hotels, restaurants, experiences, and tourism partners seamlessly connected.</p></div>
+        <div class="feature-card" style="background-image: url('images/safety.png');"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h4>Panic Button (Namola)</h4><p>One-touch emergency safety integration via Namola. Instant alert dispatch to emergency services ensuring traveller safety at all times, anywhere.</p></div>
+        <div class="feature-card" style="background-image: url('images/payment.png');"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="1" y1="10" x2="23" y2="10" stroke-linecap="round"/></svg></div><h4>Payment Gateway</h4><p>Integrated Vodapay and Nedbank payment solutions enabling cashless, secure transactions. Smart digital coupons create a new economic layer for operators and tourists.</p></div>
+        <div class="feature-card" style="background-image: url('images/tourism.png');"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-linecap="round" stroke-linejoin="round"/><line x1="2" y1="12" x2="22" y2="12" stroke-linecap="round"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h4>Tourism Partnerships</h4><p>Deep integrations with tourism boards, hospitality partners, and cultural experiences creating a rich ecosystem of curated tourism opportunities for every traveller.</p></div>
+        <div class="feature-card" style="background-image: url('images/advertising.png');"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h4>Digital Advertising</h4><p>In-app advertising and sponsored content opportunities allowing tourism businesses and brands to reach a targeted, engaged audience of active travellers.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reward-section">
+    <div class="container">
+      <div class="reward-grid">
+        <div class="reward-content">
+          <div class="label" style="display:inline-block;background:rgba(32,189,115,0.15);color:var(--green);font-size:0.8rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 18px;border-radius:50px;margin-bottom:16px;border:1px solid rgba(32,189,115,0.3);">The Reward</div>
+          <h2>Sustainability, Growth &amp; Financial Empowerment</h2>
+          <p>TMS delivers measurable value across the tourism ecosystem for travellers seeking convenience, for operators seeking income, and for the economy seeking sustainable growth.</p>
+          <div class="reward-items">
+            <div class="reward-item"><div class="reward-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h5>Safety-First Platform</h5><p>Emergency integration with Namola ensures every journey is covered by real-time emergency response capabilities.</p></div></div>
+            <div class="reward-item"><div class="reward-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23" stroke-linecap="round"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h5>Financial Inclusion</h5><p>A zero-commission model and digital coupon economy opens formal income channels for previously excluded local operators.</p></div></div>
+            <div class="reward-item"><div class="reward-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h5>Eco-Conscious Mobility</h5><p>Cycling, walking, and shared transport options reduce the carbon footprint of tourism while creating memorable experiences.</p></div></div>
+            <div class="reward-item"><div class="reward-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18" stroke-linecap="round" stroke-linejoin="round"/><polyline points="17 6 23 6 23 12" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h5>Scalable Global Vision</h5><p>Built with a global expansion roadmap, TMS aims to replicate its South African success across African and international tourism markets.</p></div></div>
+          </div>
+        </div>
+        <div class="reward-visual">
+          <div class="reward-stat-box"><h3 data-count="100" data-suffix="%">0%</h3><p>Zero Commission for Operators</p></div>
+          <div class="reward-stat-box"><h3 data-count="8" data-suffix="+">0+</h3><p>Revenue Streams</p></div>
+          <div class="reward-stat-box"><h3 data-count="24" data-suffix="/7">0</h3><p>Emergency Safety Access</p></div>
+          <div class="reward-stat-box" style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.1);margin-top:0;"><h3 data-count="1" data-suffix=" App">0</h3><p>Full Mobility Ecosystem</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Experience Consolidated Convenience?</h2>
+      <p>Join thousands of travellers and operators transforming the tourism experience through the TMS platform.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <a href="contact.html" class="btn btn-dark btn-lg">Become an Operator</a>
+        <a href="platform.html" class="btn btn-outline btn-lg">View All Services</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="images/black-logo.png" alt="TMS - Tourism Mobility Services" style="height:52px;width:auto;object-fit:contain;display:block;margin-bottom:20px;" onerror="this.style.display='none';" />
+          <p>South Africa's premier mobile super app for tourism mobility. Connecting travellers with safe, eco-friendly services while empowering local operators through financial inclusion and smart digital tools.</p>
+          <div>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.36 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.44 16z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <a href="tel:+27081303244">+27 081 303 2447</a>
+            </div>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke-linecap="round" stroke-linejoin="round"/><polyline points="22,6 12,13 2,6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <a href="mailto:info@tourismmobilityservices.com">info@tourismmobilityservices.com</a>
+            </div>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-linecap="round"/><polyline points="12 6 12 12 16 14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Mon-Fri: 7AM - 5PM SAST</span>
+            </div>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Navigation</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About TMS</a></li>
+            <li><a href="platform.html">Services &amp; Budget</a></li>
+            <li><a href="strategy.html">Strategy</a></li>
+
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <ul class="footer-links">
+            <li><a href="platform.html">Our Services</a></li>
+            <li><a href="platform.html#budget">Budget &amp; Projections</a></li>
+            <li><a href="strategy.html">Business Model</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Tourism Mobility Services. All rights reserved.</p>
+        <p class="tagline">Experience Consolidated Convenience</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script>
+    var navbar = document.getElementById('navbar');
+    var navLogo = document.getElementById('navLogo');
+    var WHITE_LOGO = 'images/white-logo.png';
+    var BLACK_LOGO = 'images/black-logo.png';
+    function handleScroll() {
+      if (window.scrollY > 40) { navbar.classList.add('scrolled'); navLogo.src = WHITE_LOGO; }
+      else { navbar.classList.remove('scrolled'); navLogo.src = BLACK_LOGO; }
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    var sidebar = document.getElementById('sidebar');
+    var sidebarOverlay = document.getElementById('sidebarOverlay');
+    var navToggle = document.getElementById('navToggle');
+    var sidebarClose = document.getElementById('sidebarClose');
+    function openSidebar() { sidebar.classList.add('open'); sidebarOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; navToggle.setAttribute('aria-expanded', 'true'); }
+    function closeSidebar() { sidebar.classList.remove('open'); sidebarOverlay.classList.remove('open'); document.body.style.overflow = ''; navToggle.setAttribute('aria-expanded', 'false'); }
+    navToggle.addEventListener('click', function() { sidebar.classList.contains('open') ? closeSidebar() : openSidebar(); });
+    sidebarClose.addEventListener('click', closeSidebar);
+    sidebarOverlay.addEventListener('click', closeSidebar);
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeSidebar(); });
+    function animateCounters() {
+      document.querySelectorAll('[data-count]').forEach(function(el) {
+        var target = parseInt(el.dataset.count);
+        var suffix = el.dataset.suffix || '';
+        var current = 0;
+        var step = Math.ceil(target / 40);
+        var timer = setInterval(function() {
+          current = Math.min(current + step, target);
+          el.textContent = current + suffix;
+          if (current >= target) clearInterval(timer);
+        }, 40);
+      });
+    }
+    var heroObs = new IntersectionObserver(function(entries) { if (entries[0].isIntersecting) { animateCounters(); heroObs.disconnect(); } }, { threshold: 0.3 });
+    var heroEl = document.querySelector('.hero');
+    if (heroEl) heroObs.observe(heroEl);
+  </script>
+</body>
+</html>
