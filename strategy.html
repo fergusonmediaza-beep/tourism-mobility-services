@@ -9,98 +9,102 @@
   <link href="https://fonts.googleapis.com/css2?family=Biryani:wght@400;600;700;800;900&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <style>
-    .tab-bar { background: var(--white); border-bottom: 1px solid #e5e5e5; box-shadow: 0 2px 16px rgba(0,0,0,0.06); }
-    .tab-bar .container { display: flex; }
-    .tab-btn { flex: 1; padding: 18px 40px; font-family: 'Biryani', sans-serif; font-size: 0.78rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #999; background: none; border: none; border-bottom: 3px solid transparent; cursor: pointer; transition: color 0.2s, border-color 0.2s, background 0.2s; white-space: nowrap; text-align: center; }
-    .tab-btn:hover { color: var(--green); }
-    .tab-btn.active { color: var(--green); border-bottom-color: var(--green); }
-    @media (max-width: 480px) { .tab-btn { padding: 16px 12px; font-size: 0.7rem; letter-spacing: 1px; } }
-    .tab-panel { display: none; }
-    .tab-panel.active { display: block; }
-    .label-pill { display: inline-block; background: var(--green-light); color: var(--green); font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 6px 18px; border-radius: 50px; margin-bottom: 16px; border: 1px solid rgba(32,189,115,0.25); }
-    .revenue-streams { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    @media (max-width: 900px) { .revenue-streams { grid-template-columns: repeat(2,1fr); } }
-    @media (max-width: 580px) { .revenue-streams { grid-template-columns: 1fr; } }
-    .revenue-card { background: var(--black); border-radius: 16px; padding: 36px 28px; transition: transform 0.2s; }
-    .revenue-card:hover { transform: translateY(-4px); }
-    .revenue-card:last-child { background: var(--green); }
-    .revenue-number { font-family: 'Biryani', sans-serif; font-size: 2.5rem; font-weight: 900; color: rgba(255,255,255,0.1); line-height: 1; margin-bottom: 14px; }
-    .revenue-card:last-child .revenue-number { color: rgba(0,0,0,0.12); }
-    .revenue-card h4 { font-family: 'Biryani', sans-serif; font-size: 0.95rem; font-weight: 800; color: var(--white); margin-bottom: 10px; }
-    .revenue-card:last-child h4 { color: var(--black); }
-    .revenue-card p { font-size: 0.875rem; color: rgba(255,255,255,0.6); line-height: 1.65; margin: 0; }
-    .revenue-card:last-child p { color: rgba(0,0,0,0.65); }
-    .canvas-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; background: #ddd; border-radius: 12px; overflow: hidden; }
-    .canvas-cell { background: var(--white); padding: 22px 20px; }
-    .canvas-cell.dark { background: var(--black); }
-    .canvas-cell.dark h5 { color: var(--green); }
-    .canvas-cell.dark li { color: rgba(255,255,255,0.65); }
-    .canvas-cell.gray { background: var(--gray-100); }
-    .canvas-cell h5 { font-family: 'Biryani', sans-serif; font-size: 0.78rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--green); margin-bottom: 12px; }
-    .canvas-cell ul { list-style: none; padding: 0; margin: 0; }
-    .canvas-cell li { font-size: 0.8rem; color: #555; padding: 3px 0; border-bottom: 1px solid rgba(0,0,0,0.05); line-height: 1.5; }
-    .canvas-cell li:last-child { border-bottom: none; }
-    .span-2 { grid-column: span 2; }
-    .span-3 { grid-column: span 3; }
-    .span-5 { grid-column: span 5; }
-    .principles-box { background: var(--black); border-radius: 20px; padding: 48px 40px; }
-    .principle-item { display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
-    .principle-item:last-child { border-bottom: none; }
-    .principle-num { width: 36px; height: 36px; background: rgba(32,189,115,0.12); border: 1px solid rgba(32,189,115,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'Biryani', sans-serif; font-weight: 800; font-size: 0.8rem; color: var(--green); }
-    .principle-item h5 { color: var(--white); margin-bottom: 4px; font-family: 'Biryani', sans-serif; font-size: 0.9rem; }
-    .principle-item p { color: rgba(255,255,255,0.55); font-size: 0.85rem; margin: 0; line-height: 1.6; }
-    .adv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    @media (max-width: 900px) { .adv-grid { grid-template-columns: 1fr; } }
-    .personality-list { display: flex; flex-direction: column; gap: 14px; }
-    .personality-item { display: flex; align-items: center; gap: 14px; }
-    .personality-dot { width: 10px; height: 10px; background: var(--green); border-radius: 50%; flex-shrink: 0; }
-    .channel-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-    @media (max-width: 700px) { .channel-grid { grid-template-columns: 1fr; } }
-    .channel-card { display: flex; gap: 18px; align-items: flex-start; padding: 28px; background: var(--white); border-radius: 16px; border: 1px solid #eee; transition: border-color 0.2s, transform 0.2s; }
-    .channel-card:hover { border-color: rgba(32,189,115,0.3); transform: translateY(-3px); }
-    .channel-dot { width: 10px; height: 10px; background: var(--green); border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
-    .channel-card h5 { font-family: 'Biryani', sans-serif; font-weight: 800; font-size: 0.9rem; margin-bottom: 8px; }
-    .channel-card p { font-size: 0.875rem; color: #666; line-height: 1.65; margin: 0; }
-    .audience-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-    @media (max-width: 700px) { .audience-grid { grid-template-columns: 1fr; } }
-    .gaps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    @media (max-width: 900px) { .gaps-grid { grid-template-columns: repeat(2,1fr); } }
-    @media (max-width: 580px) { .gaps-grid { grid-template-columns: 1fr; } }
-    .gap-item { padding: 26px 24px; background: var(--white); border-radius: 12px; border-left: 4px solid var(--green); }
-    .gap-item h5 { font-family: 'Biryani', sans-serif; font-weight: 800; font-size: 0.9rem; margin-bottom: 8px; }
-    .gap-item p { font-size: 0.855rem; color: #666; line-height: 1.65; margin: 0; }
-    .usp-bar { background: var(--green); padding: 32px 0; }
-    .usp-inner { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 24px; text-align: center; }
-    .usp-item h3 { font-family: 'Biryani', sans-serif; font-size: 1.7rem; font-weight: 900; color: var(--black); margin: 0 0 4px; }
-    .usp-item p { font-size: 0.78rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(0,0,0,0.55); margin: 0; }
-    html { scroll-behavior: smooth; }
-
-    /* ── Sidebar ── */
-    .sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.55); backdrop-filter: blur(2px); z-index: 1998; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
-    .sidebar-overlay.open { opacity: 1; pointer-events: all; }
-    .sidebar { position: fixed; top: 0; right: 0; width: 300px; height: 100vh; background: #0a0a0a; z-index: 1999; display: flex; flex-direction: column; transform: translateX(100%); transition: transform 0.38s cubic-bezier(0.4,0,0.2,1); overflow-y: auto; }
-    .sidebar.open { transform: translateX(0); }
-    .sidebar-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid rgba(255,255,255,0.08); }
-    .sidebar-logo { height: 44px; width: auto; object-fit: contain; }
-    .sidebar-close { background: none; border: none; cursor: pointer; padding: 6px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.7); border-radius: 8px; transition: background 0.2s; }
-    .sidebar-close:hover { background: rgba(255,255,255,0.08); color: #fff; }
-    .sidebar-close svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
-    .sidebar-nav { flex: 1; padding: 24px 16px; display: flex; flex-direction: column; gap: 4px; }
-    .sidebar-nav a { display: flex; align-items: center; gap: 12px; font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 0.95rem; color: rgba(255,255,255,0.75); padding: 12px 16px; border-radius: 10px; text-decoration: none; transition: all 0.2s ease; }
-    .sidebar-nav a:hover, .sidebar-nav a.active { background: rgba(32,189,115,0.12); color: #20BD73; }
-    .sidebar-nav a .nav-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.2); flex-shrink: 0; transition: background 0.2s; }
-    .sidebar-nav a:hover .nav-dot, .sidebar-nav a.active .nav-dot { background: #20BD73; }
-    .sidebar-divider { height: 1px; background: rgba(255,255,255,0.07); margin: 8px 16px; }
-    .sidebar-footer { padding: 20px 24px; border-top: 1px solid rgba(255,255,255,0.08); }
-    .sidebar-footer a { display: block; background: #20BD73; color: #fff; text-align: center; font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 0.95rem; padding: 14px 24px; border-radius: 10px; text-decoration: none; transition: background 0.2s; }
-    .sidebar-footer a:hover { background: #18a562; }
-    .sidebar-tagline { text-align: center; font-size: 0.72rem; color: rgba(255,255,255,0.25); margin-top: 16px; font-family: 'Open Sans', sans-serif; letter-spacing: 1px; text-transform: uppercase; }
+    .navbar-logo-wrap{display:flex;align-items:center;gap:14px;text-decoration:none;}
+    .logo-img-large{display:block;height:64px;width:auto;max-width:220px;object-fit:contain;}
+    .logo-slogan-divider{width:1px;height:34px;background:rgba(0,0,0,0.15);flex-shrink:0;}
+    .logo-slogan-text{font-family:'Open Sans',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(20,20,20,0.65);line-height:1.3;white-space:nowrap;}
+    @media(max-width:600px){.logo-slogan-divider,.logo-slogan-text{display:none;}.logo-img-large{height:50px;}}
+    .nav-toggle{display:none;}.nav-links{display:flex!important;}
+    @media(max-width:768px){.nav-toggle{display:flex!important;}.nav-links{display:none!important;}}
+    .tab-bar{background:var(--white);border-bottom:1px solid #e5e5e5;box-shadow:0 2px 16px rgba(0,0,0,0.06);}
+    .tab-bar .container{display:flex;}
+    .tab-btn{flex:1;padding:18px 40px;font-family:'Biryani',sans-serif;font-size:0.78rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#999;background:none;border:none;border-bottom:3px solid transparent;cursor:pointer;transition:color 0.2s,border-color 0.2s;text-align:center;}
+    .tab-btn:hover{color:var(--green);}.tab-btn.active{color:var(--green);border-bottom-color:var(--green);}
+    @media(max-width:480px){.tab-btn{padding:16px 12px;font-size:0.7rem;}}
+    .tab-panel{display:none;}.tab-panel.active{display:block;}
+    .page-header-grid{display:grid;grid-template-columns:1fr auto;align-items:center;gap:40px;}
+    .page-header-img-wrap{position:relative;flex-shrink:0;margin-right:-20px;}
+    .page-header-img{width:320px;max-width:38vw;height:200px;object-fit:cover;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.4);display:block;}
+    .aspire-badge{position:absolute;bottom:14px;left:14px;background:rgba(32,189,115,0.92);color:#fff;font-family:'Biryani',sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;padding:8px 16px;border-radius:8px;white-space:nowrap;}
+    @media(max-width:768px){.page-header-grid{grid-template-columns:1fr;}.page-header-img-wrap{display:none;}}
+    .label-pill{display:inline-block;background:var(--green-light);color:var(--green);font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 18px;border-radius:50px;margin-bottom:16px;border:1px solid rgba(32,189,115,0.25);}
+    .revenue-streams{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    @media(max-width:900px){.revenue-streams{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:580px){.revenue-streams{grid-template-columns:1fr;}}
+    .revenue-card{background:var(--black);border-radius:16px;padding:36px 28px;transition:transform 0.2s;}
+    .revenue-card:hover{transform:translateY(-4px);}
+    .revenue-card:last-child{background:var(--green);}
+    .revenue-number{font-family:'Biryani',sans-serif;font-size:2.5rem;font-weight:900;color:rgba(255,255,255,0.1);line-height:1;margin-bottom:14px;}
+    .revenue-card:last-child .revenue-number{color:rgba(0,0,0,0.12);}
+    .revenue-card h4{font-family:'Biryani',sans-serif;font-size:0.95rem;font-weight:800;color:var(--white);margin-bottom:10px;}
+    .revenue-card:last-child h4{color:var(--black);}
+    .revenue-card p{font-size:0.875rem;color:rgba(255,255,255,0.6);line-height:1.65;margin:0;}
+    .revenue-card:last-child p{color:rgba(0,0,0,0.65);}
+    .canvas-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;background:#ddd;border-radius:12px;overflow:hidden;}
+    .canvas-cell{background:var(--white);padding:22px 20px;}
+    .canvas-cell.dark{background:var(--black);}
+    .canvas-cell.dark h5{color:var(--green);}
+    .canvas-cell.dark li{color:rgba(255,255,255,0.65);}
+    .canvas-cell.gray{background:var(--gray-100);}
+    .canvas-cell h5{font-family:'Biryani',sans-serif;font-size:0.78rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);margin-bottom:12px;}
+    .canvas-cell ul{list-style:none;padding:0;margin:0;}
+    .canvas-cell li{font-size:0.8rem;color:#555;padding:3px 0;border-bottom:1px solid rgba(0,0,0,0.05);line-height:1.5;}
+    .canvas-cell li:last-child{border-bottom:none;}
+    .span-2{grid-column:span 2;}.span-3{grid-column:span 3;}.span-5{grid-column:span 5;}
+    .principles-box{background:var(--black);border-radius:20px;padding:48px 40px;}
+    .principle-item{display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.07);}
+    .principle-item:last-child{border-bottom:none;}
+    .principle-num{width:36px;height:36px;background:rgba(32,189,115,0.12);border:1px solid rgba(32,189,115,0.3);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Biryani',sans-serif;font-weight:800;font-size:0.8rem;color:var(--green);}
+    .principle-item h5{color:var(--white);margin-bottom:4px;font-family:'Biryani',sans-serif;font-size:0.9rem;}
+    .principle-item p{color:rgba(255,255,255,0.55);font-size:0.85rem;margin:0;line-height:1.6;}
+    .adv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    @media(max-width:900px){.adv-grid{grid-template-columns:1fr;}}
+    .personality-list{display:flex;flex-direction:column;gap:14px;}
+    .personality-item{display:flex;align-items:center;gap:14px;}
+    .personality-dot{width:10px;height:10px;background:var(--green);border-radius:50%;flex-shrink:0;}
+    .channel-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+    @media(max-width:700px){.channel-grid{grid-template-columns:1fr;}}
+    .channel-card{display:flex;gap:18px;align-items:flex-start;padding:28px;background:var(--white);border-radius:16px;border:1px solid #eee;transition:border-color 0.2s,transform 0.2s;}
+    .channel-card:hover{border-color:rgba(32,189,115,0.3);transform:translateY(-3px);}
+    .channel-dot{width:10px;height:10px;background:var(--green);border-radius:50%;flex-shrink:0;margin-top:6px;}
+    .channel-card h5{font-family:'Biryani',sans-serif;font-weight:800;font-size:0.9rem;margin-bottom:8px;}
+    .channel-card p{font-size:0.875rem;color:#666;line-height:1.65;margin:0;}
+    .audience-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+    @media(max-width:700px){.audience-grid{grid-template-columns:1fr;}}
+    .gaps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+    @media(max-width:900px){.gaps-grid{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:580px){.gaps-grid{grid-template-columns:1fr;}}
+    .gap-item{padding:26px 24px;background:var(--white);border-radius:12px;border-left:4px solid var(--green);}
+    .gap-item h5{font-family:'Biryani',sans-serif;font-weight:800;font-size:0.9rem;margin-bottom:8px;}
+    .gap-item p{font-size:0.855rem;color:#666;line-height:1.65;margin:0;}
+    .usp-bar{background:var(--green);padding:32px 0;}
+    .usp-inner{display:flex;justify-content:space-around;flex-wrap:wrap;gap:24px;text-align:center;}
+    .usp-item h3{font-family:'Biryani',sans-serif;font-size:1.7rem;font-weight:900;color:var(--black);margin:0 0 4px;}
+    .usp-item p{font-size:0.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(0,0,0,0.55);margin:0;}
+    .sidebar-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.55);backdrop-filter:blur(2px);z-index:1998;opacity:0;pointer-events:none;transition:opacity 0.35s;}
+    .sidebar-overlay.open{opacity:1;pointer-events:all;}
+    .sidebar{position:fixed;top:0;right:0;width:300px;height:100vh;background:#0a0a0a;z-index:1999;display:flex;flex-direction:column;transform:translateX(100%);transition:transform 0.38s cubic-bezier(0.4,0,0.2,1);overflow-y:auto;}
+    .sidebar.open{transform:translateX(0);}
+    .sidebar-header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid rgba(255,255,255,0.08);}
+    .sidebar-logo{height:44px;width:auto;object-fit:contain;}
+    .sidebar-close{background:none;border:none;cursor:pointer;padding:6px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.7);border-radius:8px;transition:background 0.2s;}
+    .sidebar-close:hover{background:rgba(255,255,255,0.08);color:#fff;}
+    .sidebar-close svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;}
+    .sidebar-nav{flex:1;padding:24px 16px;display:flex;flex-direction:column;gap:4px;}
+    .sidebar-nav a{display:flex;align-items:center;gap:12px;font-family:'Open Sans',sans-serif;font-weight:600;font-size:0.95rem;color:rgba(255,255,255,0.75);padding:12px 16px;border-radius:10px;text-decoration:none;transition:all 0.2s;}
+    .sidebar-nav a:hover,.sidebar-nav a.active{background:rgba(32,189,115,0.12);color:#20BD73;}
+    .sidebar-nav a .nav-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.2);flex-shrink:0;transition:background 0.2s;}
+    .sidebar-nav a:hover .nav-dot,.sidebar-nav a.active .nav-dot{background:#20BD73;}
+    .sidebar-divider{height:1px;background:rgba(255,255,255,0.07);margin:8px 16px;}
+    .sidebar-footer{padding:20px 24px;border-top:1px solid rgba(255,255,255,0.08);}
+    .sidebar-footer a{display:block;background:#20BD73;color:#fff;text-align:center;font-family:'Open Sans',sans-serif;font-weight:600;font-size:0.95rem;padding:14px 24px;border-radius:10px;text-decoration:none;transition:background 0.2s;}
+    .sidebar-footer a:hover{background:#18a562;}
+    .sidebar-tagline{text-align:center;font-size:0.72rem;color:rgba(255,255,255,0.25);margin-top:16px;font-family:'Open Sans',sans-serif;letter-spacing:1px;text-transform:uppercase;}
+    html{scroll-behavior:smooth;}
   </style>
 </head>
 <body>
-
   <div id="loader-wrapper"><span class="loader"></span></div>
-
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
@@ -118,18 +122,17 @@
     </nav>
     <div class="sidebar-footer">
       <a href="contact.html">Contact Us</a>
-      <p class="sidebar-tagline">Experience Consolidated Convenience</p>
+      <p class="sidebar-tagline">Where Travel Meets Trust</p>
     </div>
   </aside>
 
   <nav class="navbar white-bg" id="navbar">
     <div class="container">
       <div class="navbar-inner">
-        <a href="index.html" class="navbar-logo">
-          <div class="logo-icon">
-            <img src="images/white-logo.png" alt="TMS Logo" onerror="this.style.display='none'; this.parentNode.innerHTML='<span style=\'font-family:Biryani,sans-serif;font-weight:900;font-size:1rem;color:#fff;\'>TMS</span>';" />
-          </div>
-          <div class="logo-text"><span>TMS</span><small>Tourism Mobility Services</small></div>
+        <a href="index.html" class="navbar-logo-wrap">
+          <img src="images/white-logo.png" alt="TMS" class="logo-img-large" onerror="this.style.outline='2px dashed rgba(32,189,115,0.5)';this.style.padding='4px 12px';this.style.borderRadius='6px';" />
+          <div class="logo-slogan-divider"></div>
+          <span class="logo-slogan-text">Where Travel<br>Meets Trust</span>
         </a>
         <ul class="nav-links" id="navLinks">
           <li><a href="index.html">Home</a></li>
@@ -143,23 +146,23 @@
     </div>
   </nav>
 
-  <div class="breadcrumb">
-    <div class="container">
-      <div class="breadcrumb-inner">
-        <a href="index.html">Home</a>
-        <span class="breadcrumb-sep">/</span>
-        <span>Strategy</span>
-      </div>
-    </div>
-  </div>
+  <div class="breadcrumb"><div class="container"><div class="breadcrumb-inner"><a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span>Strategy</span></div></div></div>
 
   <div class="page-header">
     <div class="container">
-      <div class="label">Investor Ready</div>
-      <h1>Strategy</h1>
-      <p>TMS's business model and go-to-market approach — how the platform generates revenue and how it reaches, converts, and retains its audience.</p>
+      <div class="page-header-grid">
+        <div>
+          <div class="label">Investor Ready</div>
+          <h1>Strategy</h1>
+          <p>TMS's business model and go-to-market approach &mdash; how the platform generates revenue and how it reaches, converts, and retains its audience.</p>
+        </div>
+        <div class="page-header-img-wrap">
+          <img src="images/strategy.jpg" alt="TMS Strategy" class="page-header-img" onerror="this.style.display='none';" />
+          <!-- <div class="aspire-badge">&#10022; Aspire to Inspire</div> -->
+        </div>
+      </div>
     </div>
-  </div>
+  </div>  
 
   <div class="tab-bar">
     <div class="container">
@@ -169,21 +172,20 @@
   </div>
 
   <div class="tab-panel active" id="tab-business-model">
-
     <section class="section">
       <div class="container">
-        <div class="grid-2" style="align-items:center; gap:80px;">
+        <div class="grid-2" style="align-items:center;gap:80px;">
           <div>
             <div class="label-pill">Model Overview</div>
             <h2>Aggregator E-Commerce B2B2C Platform</h2>
-            <p>TMS operates as a digital aggregator — a neutral marketplace infrastructure that connects tourism service operators (B2B) with end consumers (B2C) while generating value and revenue at every layer of the transaction.</p>
+            <p>TMS operates as a digital aggregator &mdash; a neutral marketplace infrastructure that connects tourism service operators (B2B) with end consumers (B2C) while generating value and revenue at every layer of the transaction.</p>
             <p>Unlike extractive commission-based platforms, TMS empowers operators through a Smart Jobs Coupon system that guarantees income, digital tools that reduce overhead, and a growing user base that delivers demand without intermediary exploitation.</p>
-            <p>The platform monetizes through subscription tiers, advertising, data licensing, sponsored content, and premium feature access — creating diverse revenue streams that are resilient to market fluctuations and scalable across geographies.</p>
+            <p>The platform monetizes through subscription tiers, advertising, data licensing, sponsored content, and premium feature access &mdash; creating diverse revenue streams that are resilient to market fluctuations and scalable across geographies.</p>
             <a href="contact.html" class="btn btn-primary" style="margin-top:16px;">Discuss Partnership</a>
           </div>
           <div class="principles-box">
             <h3 style="color:var(--green);font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px;font-family:'Biryani',sans-serif;">Core Model Principles</h3>
-            <div class="principle-item"><div class="principle-num">01</div><div><h5>Zero Commission from Operators</h5><p>Operators retain 100% of their earnings. TMS earns through subscriptions, advertising, and premium features — not by taxing operator income.</p></div></div>
+            <div class="principle-item"><div class="principle-num">01</div><div><h5>Zero Commission from Operators</h5><p>Operators retain 100% of their earnings. TMS earns through subscriptions, advertising, and premium features &mdash; not by taxing operator income.</p></div></div>
             <div class="principle-item"><div class="principle-num">02</div><div><h5>Smart Jobs Coupon Economy</h5><p>A proprietary digital coupon system creates guaranteed income for operators, drives consumer engagement, and establishes a unique monetization layer.</p></div></div>
             <div class="principle-item"><div class="principle-num">03</div><div><h5>Multi-Layered Revenue</h5><p>Six distinct revenue streams across advertising, data, premium features, partnerships, and coupons create resilience against market volatility.</p></div></div>
             <div class="principle-item"><div class="principle-num">04</div><div><h5>Scalable Global Architecture</h5><p>Built to replicate across new markets with minimal incremental infrastructure cost, enabling rapid geographic expansion.</p></div></div>
@@ -194,58 +196,44 @@
 
     <section class="section bg-gray">
       <div class="container">
-        <div class="section-header">
-          <div class="label">Revenue Generation</div>
-          <h2>Six Core Revenue Streams</h2>
-          <p>Diversified income sources designed for resilience, growth, and scalability across every stage of platform development.</p>
-        </div>
+        <div class="section-header"><div class="label">Revenue Generation</div><h2>Six Core Revenue Streams</h2><p>Diversified income sources designed for resilience, growth, and scalability across every stage of platform development.</p></div>
         <div class="revenue-streams">
           <div class="revenue-card"><div class="revenue-number">01</div><h4>Smart Jobs Coupons</h4><p>Proprietary digital coupon economy generating transactional revenue from every coupon issued, redeemed, and circulated within the TMS ecosystem.</p></div>
           <div class="revenue-card"><div class="revenue-number">02</div><h4>Tourism &amp; Hospitality Partnerships</h4><p>Strategic partnership agreements with hotels, tour operators, airlines, and tourism boards generate referral fees, licensing revenue, and co-marketing income.</p></div>
           <div class="revenue-card"><div class="revenue-number">03</div><h4>Premium Features &amp; Subscriptions</h4><p>Operators and businesses access advanced analytics, priority listing, enhanced marketing tools, and premium support through tiered monthly subscription plans.</p></div>
-          <div class="revenue-card"><div class="revenue-number">04</div><h4>Data Analytics Licensing</h4><p>Anonymized, aggregated tourism mobility data licensed to tourism boards, urban planners, government agencies, and research institutions — a high-margin, passive revenue stream.</p></div>
+          <div class="revenue-card"><div class="revenue-number">04</div><h4>Data Analytics Licensing</h4><p>Anonymized, aggregated tourism mobility data licensed to tourism boards, urban planners, government agencies, and research institutions.</p></div>
           <div class="revenue-card"><div class="revenue-number">05</div><h4>Sponsored Content &amp; Digital Advertising</h4><p>In-app advertising, sponsored listings, push notification campaigns, and branded content reach active travellers at peak decision-making moments.</p></div>
-          <div class="revenue-card"><div class="revenue-number">06</div><h4>Transaction Processing Fees</h4><p>Small processing fees applied to all payment gateway transactions — generating meaningful aggregate revenue at scale as transaction volume grows.</p></div>
+          <div class="revenue-card"><div class="revenue-number">06</div><h4>Transaction Processing Fees</h4><p>Small processing fees applied to all payment gateway transactions &mdash; generating meaningful aggregate revenue at scale as transaction volume grows.</p></div>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <div class="section-header">
-          <div class="label">Strategic Framework</div>
-          <h2>Business Model Canvas</h2>
-          <p>A comprehensive view of the TMS value architecture — from key partners and activities to cost structure and customer segments.</p>
-        </div>
-        <div style="overflow-x:auto;">
-          <div style="min-width:800px;">
-            <div class="canvas-grid">
-              <div class="canvas-cell"><h5>Key Partners</h5><ul><li>Namola (Safety)</li><li>Vodacom / Vodapay</li><li>Nedbank (Fintech)</li><li>SA Tourism Boards</li><li>Hotel &amp; Hospitality Groups</li><li>Independent Operators</li><li>Tech Infrastructure Providers</li><li>Municipality &amp; Government</li></ul></div>
-              <div class="canvas-cell span-2"><h5>Key Activities</h5><ul><li>Platform development &amp; maintenance</li><li>Operator onboarding &amp; training</li><li>Safety system management</li><li>Marketing &amp; user acquisition</li><li>Payment processing &amp; fintech ops</li><li>Data analytics &amp; insights</li><li>Partner relationship management</li><li>Regulatory compliance</li></ul></div>
-              <div class="canvas-cell span-2"><h5>Value Proposition</h5><ul><li>Single platform for all mobility</li><li>Integrated safety (Namola)</li><li>Zero-commission for operators</li><li>Financial inclusion tools</li><li>Eco-conscious transport options</li><li>Curated tourism experiences</li><li>Cashless payment ecosystem</li><li>Real-time reliable service</li></ul></div>
-              <div class="canvas-cell"><h5>Key Resources</h5><ul><li>Mobile application platform</li><li>Operator network</li><li>Payment gateway integrations</li><li>Safety infrastructure</li><li>Data &amp; analytics engine</li><li>Brand &amp; marketing assets</li><li>Development team</li></ul></div>
-              <div class="canvas-cell span-2"><h5>Channels</h5><ul><li>Mobile app (iOS &amp; Android)</li><li>Social media platforms</li><li>Tourism board partnerships</li><li>Hotel &amp; hospitality referrals</li><li>Airport &amp; transport hubs</li><li>Influencer marketing</li><li>Traditional media &amp; PR</li></ul></div>
-              <div class="canvas-cell span-2"><h5>Customer Relationships</h5><ul><li>Self-service app interface</li><li>Operator support portal</li><li>In-app customer service</li><li>Community referral programs</li><li>Loyalty &amp; coupon rewards</li><li>Safety assurance systems</li></ul></div>
-              <div class="canvas-cell span-2 gray"><h5>Customer Segments</h5><ul><li>International tourists visiting South Africa</li><li>Domestic leisure &amp; business travellers</li><li>Independent transport operators &amp; drivers</li><li>Tourism &amp; hospitality businesses</li><li>Professional service providers (Do it 4 U)</li><li>Eco-conscious travellers seeking sustainable options</li></ul></div>
-              <div class="canvas-cell gray"><h5>Revenue Streams</h5><ul><li>Smart Jobs Coupons</li><li>Tourism Partnerships</li><li>Premium Subscriptions</li><li>Data Analytics Licensing</li><li>Sponsored Content</li><li>Transaction Fees</li></ul></div>
-              <div class="canvas-cell span-5 dark"><h5>Cost Structure</h5><ul style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;"><li>Platform development &amp; hosting</li><li>Staff salaries &amp; benefits</li><li>Marketing &amp; user acquisition</li><li>Safety infrastructure (Namola)</li><li>Payment processing costs</li><li>Office &amp; operational overhead</li><li>API &amp; third-party integrations</li><li>Legal &amp; compliance costs</li><li>Contingency reserve fund</li></ul></div>
-            </div>
+        <div class="section-header"><div class="label">Strategic Framework</div><h2>Business Model Canvas</h2><p>A comprehensive view of the TMS value architecture.</p></div>
+        <div style="overflow-x:auto;"><div style="min-width:800px;">
+          <div class="canvas-grid">
+            <div class="canvas-cell"><h5>Key Partners</h5><ul><li>Namola (Safety)</li><li>Vodacom / Vodapay</li><li>Nedbank (Fintech)</li><li>SA Tourism Boards</li><li>Hotel &amp; Hospitality Groups</li><li>Independent Operators</li><li>Tech Infrastructure Providers</li><li>Municipality &amp; Government</li></ul></div>
+            <div class="canvas-cell span-2"><h5>Key Activities</h5><ul><li>Platform development &amp; maintenance</li><li>Operator onboarding &amp; training</li><li>Safety system management</li><li>Marketing &amp; user acquisition</li><li>Payment processing &amp; fintech ops</li><li>Data analytics &amp; insights</li><li>Partner relationship management</li><li>Regulatory compliance</li></ul></div>
+            <div class="canvas-cell span-2"><h5>Value Proposition</h5><ul><li>Single platform for all mobility</li><li>Integrated safety (Namola)</li><li>Zero-commission for operators</li><li>Financial inclusion tools</li><li>Eco-conscious transport options</li><li>Curated tourism experiences</li><li>Cashless payment ecosystem</li><li>Real-time reliable service</li></ul></div>
+            <div class="canvas-cell"><h5>Key Resources</h5><ul><li>Mobile application platform</li><li>Operator network</li><li>Payment gateway integrations</li><li>Safety infrastructure</li><li>Data &amp; analytics engine</li><li>Brand &amp; marketing assets</li><li>Development team</li></ul></div>
+            <div class="canvas-cell span-2"><h5>Channels</h5><ul><li>Mobile app (iOS &amp; Android)</li><li>Social media platforms</li><li>Tourism board partnerships</li><li>Hotel &amp; hospitality referrals</li><li>Airport &amp; transport hubs</li><li>Influencer marketing</li><li>Traditional media &amp; PR</li></ul></div>
+            <div class="canvas-cell span-2"><h5>Customer Relationships</h5><ul><li>Self-service app interface</li><li>Operator support portal</li><li>In-app customer service</li><li>Community referral programs</li><li>Loyalty &amp; coupon rewards</li><li>Safety assurance systems</li></ul></div>
+            <div class="canvas-cell span-2 gray"><h5>Customer Segments</h5><ul><li>International tourists visiting South Africa</li><li>Domestic leisure &amp; business travellers</li><li>VFR travellers &mdash; villages, townships &amp; small dorpies</li><li>Independent transport operators &amp; drivers</li><li>Tourism &amp; hospitality businesses</li><li>Professional service providers (Do it 4 U)</li></ul></div>
+            <div class="canvas-cell gray"><h5>Revenue Streams</h5><ul><li>Smart Jobs Coupons</li><li>Tourism Partnerships</li><li>Premium Subscriptions</li><li>Data Analytics Licensing</li><li>Sponsored Content</li><li>Transaction Fees</li></ul></div>
+            <div class="canvas-cell span-5 dark"><h5>Cost Structure</h5><ul style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;"><li>Platform development &amp; hosting</li><li>Staff salaries &amp; benefits</li><li>Marketing &amp; user acquisition</li><li>Safety infrastructure (Namola)</li><li>Payment processing costs</li><li>Office &amp; operational overhead</li><li>API &amp; third-party integrations</li><li>Legal &amp; compliance costs</li><li>Contingency reserve fund</li></ul></div>
           </div>
-        </div>
+        </div></div>
       </div>
     </section>
 
     <section class="section bg-gray">
       <div class="container">
-        <div class="section-header">
-          <div class="label">Why TMS Wins</div>
-          <h2>Competitive Advantages</h2>
-          <p>TMS occupies a uniquely defensible position in the South African tourism mobility market through structural advantages that competitors cannot easily replicate.</p>
-        </div>
+        <div class="section-header"><div class="label">Why TMS Wins</div><h2>Competitive Advantages</h2><p>TMS occupies a uniquely defensible position in the South African tourism mobility market.</p></div>
         <div class="adv-grid">
           <div class="card"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#20BD73" stroke-width="2" style="width:32px;height:32px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h4>Integrated Safety Infrastructure</h4><p>No competitor in the South African market offers panic button emergency response as a native, embedded feature. This creates deeply meaningful differentiation for safety-conscious travellers.</p></div>
-          <div class="card"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#20BD73" stroke-width="2" style="width:32px;height:32px;"><line x1="12" y1="1" x2="12" y2="23" stroke-linecap="round"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h4>Zero-Commission Operator Model</h4><p>Competing platforms charge 20–30% commission from every trip. TMS's coupon-based model retains operator earnings, driving superior operator loyalty and platform advocacy.</p></div>
-          <div class="card"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#20BD73" stroke-width="2" style="width:32px;height:32px;"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke-linecap="round" stroke-linejoin="round"/><polyline points="3.27 6.96 12 12.01 20.73 6.96" stroke-linecap="round"/><line x1="12" y1="22.08" x2="12" y2="12" stroke-linecap="round"/></svg></div><h4>True Multi-Modal Consolidation</h4><p>Ride-hailing, cycling, walking, delivery, and professional services under one platform eliminates app-switching and builds compounding network effects.</p></div>
+          <div class="card"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#20BD73" stroke-width="2" style="width:32px;height:32px;"><line x1="12" y1="1" x2="12" y2="23" stroke-linecap="round"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h4>Zero-Commission Operator Model</h4><p>Competing platforms charge 20&ndash;30% commission from every trip. TMS's coupon-based model retains operator earnings, driving superior operator loyalty and platform advocacy.</p></div>
+          <div class="card"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#20BD73" stroke-width="2" style="width:32px;height:32px;"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h4>True Multi-Modal Consolidation</h4><p>Ride-hailing, cycling, on-foot errands, delivery, and professional services under one platform eliminates app-switching and builds compounding network effects.</p></div>
         </div>
       </div>
     </section>
@@ -260,73 +248,59 @@
         </div>
       </div>
     </section>
-
   </div>
 
   <div class="tab-panel" id="tab-marketing">
-
     <section class="section">
       <div class="container">
-        <div class="grid-2" style="gap:80px; align-items:center;">
+        <div class="grid-2" style="gap:80px;align-items:center;">
           <div>
             <div class="label-pill">Positioning</div>
             <h2>Brand Positioning Statement</h2>
-            <p>TMS is positioned as South Africa's only comprehensive tourism super app — a platform that consolidates safety, mobility, professional services, and financial tools into a single experience.</p>
+            <p>TMS is positioned as South Africa's only comprehensive tourism super app &mdash; a platform that consolidates safety, mobility, professional services, and financial tools into a single experience.</p>
             <p>Our positioning is built on three pillars: <strong>consolidated convenience</strong>, <strong>safety assurance</strong>, and <strong>economic empowerment</strong>. These pillars are structural features of our platform that competitors cannot quickly replicate.</p>
-            <p>TMS speaks to both the tourist seeking a trustworthy, effortless travel companion and the local operator seeking a fair, empowering digital income platform, creating powerful network effects as both sides grow.</p>
+            <p>TMS speaks to both the tourist seeking a trustworthy, effortless travel companion and the local operator seeking a fair, empowering digital income platform.</p>
           </div>
           <div class="principles-box">
             <h3 style="color:var(--green);font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px;font-family:'Biryani',sans-serif;">Brand Personality Attributes</h3>
             <div class="personality-list">
-              <div class="personality-item"><div class="personality-dot"></div><div><strong style="color:var(--white);font-size:0.95rem;">Innovative</strong> <span style="color:rgba(255,255,255,0.5);font-size:0.875rem;"> — Forward-thinking solutions that reshape how tourism works</span></div></div>
-              <div class="personality-item"><div class="personality-dot"></div><div><strong style="color:var(--white);font-size:0.95rem;">Inclusive</strong> <span style="color:rgba(255,255,255,0.5);font-size:0.875rem;"> — Designed for every traveller and every operator without exception</span></div></div>
-              <div class="personality-item"><div class="personality-dot"></div><div><strong style="color:var(--white);font-size:0.95rem;">Reliable</strong> <span style="color:rgba(255,255,255,0.5);font-size:0.875rem;"> — Consistent, trustworthy service delivery at every touchpoint</span></div></div>
-              <div class="personality-item"><div class="personality-dot"></div><div><strong style="color:var(--white);font-size:0.95rem;">Progressive</strong> <span style="color:rgba(255,255,255,0.5);font-size:0.875rem;"> — Committed to continuous improvement and responsible growth</span></div></div>
-              <div class="personality-item"><div class="personality-dot"></div><div><strong style="color:var(--white);font-size:0.95rem;">Human-Centered</strong> <span style="color:rgba(255,255,255,0.5);font-size:0.875rem;"> — Technology designed around real people, real journeys, real needs</span></div></div>
-              <div class="personality-item"><div class="personality-dot"></div><div><strong style="color:var(--white);font-size:0.95rem;">Safety-First</strong> <span style="color:rgba(255,255,255,0.5);font-size:0.875rem;"> — Every feature evaluated through the lens of user protection</span></div></div>
+              <div class="personality-item"><div class="personality-dot"></div><div><strong style="color:var(--white);font-size:0.95rem;">Innovative</strong><span style="color:rgba(255,255,255,0.5);font-size:0.875rem;"> &mdash; Forward-thinking solutions that reshape how tourism works</span></div></div>
+              <div class="personality-item"><div class="personality-dot"></div><div><strong style="color:var(--white);font-size:0.95rem;">Inclusive</strong><span style="color:rgba(255,255,255,0.5);font-size:0.875rem;"> &mdash; Designed for every traveller and every operator without exception</span></div></div>
+              <div class="personality-item"><div class="personality-dot"></div><div><strong style="color:var(--white);font-size:0.95rem;">Reliable</strong><span style="color:rgba(255,255,255,0.5);font-size:0.875rem;"> &mdash; Consistent, trustworthy service delivery at every touchpoint</span></div></div>
+              <div class="personality-item"><div class="personality-dot"></div><div><strong style="color:var(--white);font-size:0.95rem;">Progressive</strong><span style="color:rgba(255,255,255,0.5);font-size:0.875rem;"> &mdash; Committed to continuous improvement and responsible growth</span></div></div>
+              <div class="personality-item"><div class="personality-dot"></div><div><strong style="color:var(--white);font-size:0.95rem;">Human-Centered</strong><span style="color:rgba(255,255,255,0.5);font-size:0.875rem;"> &mdash; Technology designed around real people, real journeys, real needs</span></div></div>
+              <div class="personality-item"><div class="personality-dot"></div><div><strong style="color:var(--white);font-size:0.95rem;">Safety-First</strong><span style="color:rgba(255,255,255,0.5);font-size:0.875rem;"> &mdash; Every feature evaluated through the lens of user protection</span></div></div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <div class="usp-bar">
-      <div class="container">
-        <div class="usp-inner">
-          <div class="usp-item"><h3>1 App</h3><p>Complete mobility ecosystem</p></div>
-          <div class="usp-item"><h3>0% Commission</h3><p>For all platform operators</p></div>
-          <div class="usp-item"><h3>24/7 Safety</h3><p>Namola emergency integration</p></div>
-          <div class="usp-item"><h3>5+ Streams</h3><p>Diversified revenue model</p></div>
-        </div>
-      </div>
-    </div>
+    <div class="usp-bar"><div class="container"><div class="usp-inner">
+      <div class="usp-item"><h3>1 App</h3><p>Complete mobility ecosystem</p></div>
+      <div class="usp-item"><h3>0% Commission</h3><p>For all platform operators</p></div>
+      <div class="usp-item"><h3>24/7 Safety</h3><p>Namola emergency integration</p></div>
+      <div class="usp-item"><h3>5+ Streams</h3><p>Diversified revenue model</p></div>
+    </div></div></div>
 
     <section class="section bg-gray">
       <div class="container">
-        <div class="section-header">
-          <div class="label">Audience</div>
-          <h2>Target Audience</h2>
-          <p>TMS serves two distinct but interconnected audiences whose needs and growth reinforce each other through the platform's network effects.</p>
-        </div>
+        <div class="section-header"><div class="label">Audience</div><h2>Target Audience</h2><p>TMS serves two distinct but interconnected audiences whose needs and growth reinforce each other.</p></div>
         <div class="audience-grid">
-          <div class="card"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#20BD73" stroke-width="2" style="width:32px;height:32px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="7" r="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 3.13a4 4 0 0 1 0 7.75" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h4>Consumer Audience</h4><p><strong>International Tourists:</strong> Visitors seeking safe, reliable, and convenient mobility. Aged 25–55, digitally native, safety-conscious, and value-driven.</p><p style="margin-top:12px;"><strong>Domestic Travellers:</strong> South African leisure and business travellers who want a superior, consolidated app experience.</p><p style="margin-top:12px;"><strong>Eco-Conscious Explorers:</strong> Growing segment actively seeking sustainable, low-carbon mobility options.</p></div>
-          <div class="card"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#20BD73" stroke-width="2" style="width:32px;height:32px;"><rect x="2" y="7" width="20" height="14" rx="2" ry="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h4>Operator Audience</h4><p><strong>Independent Transport Operators:</strong> Drivers, motorcycle couriers, cyclists, and walking guides seeking a fair platform that respects their income.</p><p style="margin-top:12px;"><strong>Tourism Businesses:</strong> Hotels, guesthouses, tour companies, and activity providers seeking to reach tourists through a trusted platform.</p><p style="margin-top:12px;"><strong>Professional Service Providers:</strong> Concierge professionals, translators, photographers, and specialists seeking access to the premium tourist market.</p></div>
+          <div class="card"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#20BD73" stroke-width="2" style="width:32px;height:32px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="7" r="4" stroke-linecap="round"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h4>Consumer Audience</h4><p><strong>International Tourists:</strong> Visitors seeking safe, reliable, and convenient mobility. Aged 25&ndash;55, digitally native, safety-conscious, and value-driven.</p><p style="margin-top:12px;"><strong>VFR Travellers:</strong> Tourists visiting friends and relatives in villages, townships (VTSD), and small dorpies across South Africa.</p><p style="margin-top:12px;"><strong>Domestic Travellers:</strong> South African leisure and business travellers who want a superior, consolidated app experience.</p></div>
+          <div class="card"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#20BD73" stroke-width="2" style="width:32px;height:32px;"><rect x="2" y="7" width="20" height="14" rx="2" ry="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h4>Operator Audience</h4><p><strong>Independent Transport Operators:</strong> Drivers, motorcycle couriers, cyclists, and on-foot operators seeking a fair platform that respects their income.</p><p style="margin-top:12px;"><strong>Tourism Businesses:</strong> Hotels, guesthouses, tour companies, and activity providers seeking to reach tourists through a trusted platform.</p><p style="margin-top:12px;"><strong>Professional Service Providers:</strong> Concierge professionals, translators, photographers, and specialists seeking access to the premium tourist market.</p></div>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <div class="section-header">
-          <div class="label">Go-to-Market Channels</div>
-          <h2>Marketing Channels</h2>
-          <p>A multi-channel approach that reaches both consumer and operator audiences through the most effective touchpoints for each segment.</p>
-        </div>
+        <div class="section-header"><div class="label">Go-to-Market Channels</div><h2>Marketing Channels</h2><p>A multi-channel approach that reaches both consumer and operator audiences through the most effective touchpoints.</p></div>
         <div class="channel-grid">
           <div class="channel-card"><div class="channel-dot"></div><div><h5>Social Media Marketing</h5><p>Targeted campaigns across Instagram, Facebook, TikTok, and LinkedIn reaching travellers at research and inspiration stages. Content focuses on travel tips, operator success stories, safety highlights, and eco-tourism advocacy.</p></div></div>
           <div class="channel-card"><div class="channel-dot"></div><div><h5>Influencer Marketing</h5><p>Partnerships with South African travel influencers, food bloggers, lifestyle creators, and adventure enthusiasts to generate authentic, high-trust content. Focus on micro-influencers with highly engaged followings.</p></div></div>
           <div class="channel-card"><div class="channel-dot"></div><div><h5>Tourism Board Partnerships</h5><p>Strategic alliances with South African Tourism, provincial tourism boards, and destination management organizations to integrate TMS into official visitor information and tourism guides.</p></div></div>
-          <div class="channel-card"><div class="channel-dot"></div><div><h5>Safety Campaigns</h5><p>Public awareness campaigns emphasizing TMS's safety advantages — particularly the Namola panic button integration. Targeted at international tourists, embassies, travel advisories, and safety-conscious communities.</p></div></div>
+          <div class="channel-card"><div class="channel-dot"></div><div><h5>Safety Campaigns</h5><p>Public awareness campaigns emphasizing TMS's safety advantages &mdash; particularly the Namola panic button integration. Targeted at international tourists, embassies, travel advisories, and safety-conscious communities.</p></div></div>
           <div class="channel-card"><div class="channel-dot"></div><div><h5>Referral Programs</h5><p>Structured incentive programs rewarding both operators and users for platform referrals. Smart Jobs Coupon rewards for operators who bring new operators. User-facing referral credits that drive organic, cost-efficient acquisition.</p></div></div>
           <div class="channel-card"><div class="channel-dot"></div><div><h5>Traditional Media &amp; PR</h5><p>Targeted editorial coverage in travel publications, business media, and mainstream press. Airport advertising, in-room hotel materials, and travel agency partnerships ensure physical presence at key tourist touchpoints.</p></div></div>
         </div>
@@ -335,18 +309,14 @@
 
     <section class="section bg-gray">
       <div class="container">
-        <div class="section-header">
-          <div class="label">Market Opportunity</div>
-          <h2>Market Gaps TMS Fills</h2>
-          <p>TMS enters a market with significant, well-defined gaps that no existing competitor has adequately addressed — creating a clear first-mover opportunity.</p>
-        </div>
+        <div class="section-header"><div class="label">Market Opportunity</div><h2>Market Gaps TMS Fills</h2><p>TMS enters a market with significant, well-defined gaps that no existing competitor has adequately addressed.</p></div>
         <div class="gaps-grid">
-          <div class="gap-item"><h5>Consolidation Gap</h5><p>Tourists currently use 4–6 separate apps to manage transportation, deliveries, professional services, and payments. TMS eliminates this fragmentation — one download, every service.</p></div>
-          <div class="gap-item"><h5>Safety Integration Gap</h5><p>Existing platforms offer no embedded emergency response. For international tourists — particularly female solo travellers — the absence of safety infrastructure is a significant barrier to trust. TMS's Namola integration directly addresses this.</p></div>
+          <div class="gap-item"><h5>Consolidation Gap</h5><p>Tourists currently use 4&ndash;6 separate apps to manage transportation, deliveries, professional services, and payments. TMS eliminates this fragmentation &mdash; one download, every service.</p></div>
+          <div class="gap-item"><h5>Safety Integration Gap</h5><p>Existing platforms offer no embedded emergency response. For international tourists &mdash; particularly female solo travellers &mdash; the absence of safety infrastructure is a significant barrier to trust.</p></div>
           <div class="gap-item"><h5>Financial Inclusion Gap</h5><p>Informal economy operators lack access to formal digital income platforms. Their commission burden on existing platforms prevents meaningful income accumulation. TMS's zero-commission model opens formal economic participation.</p></div>
-          <div class="gap-item"><h5>Multi-Modal Ecosystem Gap</h5><p>No platform in South Africa offers ride-hailing, cycling, walking tours, and professional services under a unified booking and payment system — essential for the modern traveller.</p></div>
+          <div class="gap-item"><h5>Multi-Modal Ecosystem Gap</h5><p>No platform in South Africa offers ride-hailing, cycling, on-foot errands, and professional services under a unified booking and payment system.</p></div>
           <div class="gap-item"><h5>Zero-Commission Gap</h5><p>The South African gig economy is undermined by extractive platform commission models taking up to 30% per transaction. A zero-commission model fundamentally changes the operator relationship.</p></div>
-          <div class="gap-item"><h5>Tourism-Specific Fintech Gap</h5><p>No platform has built a fintech layer specifically optimised for tourism — smart coupons, tourist-friendly payment options, and instant operator payouts. TMS's Vodapay and Nedbank integration fills this gap.</p></div>
+          <div class="gap-item"><h5>Tourism-Specific Fintech Gap</h5><p>No platform has built a fintech layer specifically optimised for tourism &mdash; smart coupons, tourist-friendly payment options, and instant operator payouts. TMS's Vodapay and Nedbank integration fills this gap.</p></div>
         </div>
       </div>
     </section>
@@ -361,14 +331,13 @@
         </div>
       </div>
     </section>
-
   </div>
 
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <img src="images/black-logo.png" alt="TMS - Tourism Mobility Services" style="height:52px;width:auto;object-fit:contain;display:block;margin-bottom:20px;" onerror="this.style.display='none';" />
+          <img src="images/black-logo.png" alt="TMS" style="height:52px;width:auto;object-fit:contain;display:block;margin-bottom:20px;" onerror="this.style.display='none';" />
           <p>South Africa's premier mobile super app for tourism mobility. Connecting travellers with safe, eco-friendly services while empowering local operators through financial inclusion and smart digital tools.</p>
           <div>
             <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.36 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.44 16z" stroke-linecap="round" stroke-linejoin="round"/></svg><a href="tel:+27081303244">+27 081 303 2447</a></div>
@@ -381,37 +350,23 @@
       </div>
       <div class="footer-bottom">
         <p>&copy; 2024 Tourism Mobility Services. All rights reserved.</p>
-        <p class="tagline">Experience Consolidated Convenience</p>
+        <p class="tagline">TMS &mdash; Where Travel Meets Trust</p>
       </div>
     </div>
   </footer>
 
   <script src="js/script.js"></script>
   <script>
-    const tabBtns   = document.querySelectorAll('.tab-btn');
-    const tabPanels = document.querySelectorAll('.tab-panel');
-    function openTab(tabId) {
-      tabBtns.forEach(b => b.classList.remove('active'));
-      tabPanels.forEach(p => p.classList.remove('active'));
-      const btn = document.querySelector(`[data-tab="${tabId}"]`);
-      const panel = document.getElementById(`tab-${tabId}`);
-      if (btn) btn.classList.add('active');
-      if (panel) panel.classList.add('active');
-    }
-    tabBtns.forEach(btn => { btn.addEventListener('click', () => openTab(btn.dataset.tab)); });
-    if (window.location.hash) { const hash = window.location.hash.replace('#', ''); if (document.getElementById(`tab-${hash}`)) openTab(hash); }
-  </script>
-  <script>
-    var sidebar = document.getElementById('sidebar');
-    var sidebarOverlay = document.getElementById('sidebarOverlay');
-    var navToggle = document.getElementById('navToggle');
-    var sidebarClose = document.getElementById('sidebarClose');
-    function openSidebar() { sidebar.classList.add('open'); sidebarOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; navToggle.setAttribute('aria-expanded', 'true'); }
-    function closeSidebar() { sidebar.classList.remove('open'); sidebarOverlay.classList.remove('open'); document.body.style.overflow = ''; navToggle.setAttribute('aria-expanded', 'false'); }
-    navToggle.addEventListener('click', function() { sidebar.classList.contains('open') ? closeSidebar() : openSidebar(); });
-    sidebarClose.addEventListener('click', closeSidebar);
-    sidebarOverlay.addEventListener('click', closeSidebar);
-    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeSidebar(); });
+    var tabBtns=document.querySelectorAll('.tab-btn'),tabPanels=document.querySelectorAll('.tab-panel');
+    function openTab(id){tabBtns.forEach(function(b){b.classList.remove('active');});tabPanels.forEach(function(p){p.classList.remove('active');});var btn=document.querySelector('[data-tab="'+id+'"]'),panel=document.getElementById('tab-'+id);if(btn)btn.classList.add('active');if(panel)panel.classList.add('active');}
+    tabBtns.forEach(function(btn){btn.addEventListener('click',function(){openTab(btn.dataset.tab);});});
+    if(window.location.hash){var h=window.location.hash.replace('#','');if(document.getElementById('tab-'+h))openTab(h);}
+    var sidebar=document.getElementById('sidebar'),sidebarOverlay=document.getElementById('sidebarOverlay'),navToggle=document.getElementById('navToggle'),sidebarClose=document.getElementById('sidebarClose');
+    function openSidebar(){sidebar.classList.add('open');sidebarOverlay.classList.add('open');document.body.style.overflow='hidden';}
+    function closeSidebar(){sidebar.classList.remove('open');sidebarOverlay.classList.remove('open');document.body.style.overflow='';}
+    navToggle.addEventListener('click',function(){sidebar.classList.contains('open')?closeSidebar():openSidebar();});
+    sidebarClose.addEventListener('click',closeSidebar);sidebarOverlay.addEventListener('click',closeSidebar);
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSidebar();});
   </script>
 </body>
 </html>

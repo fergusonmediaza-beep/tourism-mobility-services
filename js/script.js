@@ -110,41 +110,26 @@ document.addEventListener('DOMContentLoaded', function () {
     contactForm.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      const btn = contactForm.querySelector('[type="submit"]');
-      const originalText = btn.textContent;
+      const firstName    = document.getElementById('firstName').value.trim();
+      const lastName     = document.getElementById('lastName').value.trim();
+      const email        = document.getElementById('email').value.trim();
+      const phone        = document.getElementById('phone').value.trim();
+      const enquiryType  = document.getElementById('enquiryType').value;
+      const organisation = document.getElementById('organisation').value.trim();
+      const message      = document.getElementById('message').value.trim();
 
-      // Simulate submission
-      btn.textContent = 'Sending...';
-      btn.disabled = true;
+      const subject = encodeURIComponent(`TMS Enquiry – ${enquiryType} – ${firstName} ${lastName}`);
 
-      setTimeout(function () {
-        btn.textContent = 'Message Sent!';
-        btn.style.background = '#18a562';
+      const body = encodeURIComponent(
+        `Name: ${firstName} ${lastName}\n` +
+        `Email: ${email}\n` +
+        `Phone: ${phone || 'Not provided'}\n` +
+        `Enquiry Type: ${enquiryType}\n` +
+        `Organisation: ${organisation || 'Not provided'}\n` +
+        `\nMessage:\n${message}`
+      );
 
-        // Show success message
-        const successMsg = document.createElement('div');
-        successMsg.style.cssText = `
-          background: #e8f9f1;
-          border: 1px solid #20BD73;
-          color: #18a562;
-          padding: 16px 20px;
-          border-radius: 8px;
-          margin-top: 16px;
-          font-family: 'Open Sans', sans-serif;
-          font-weight: 600;
-          font-size: 0.95rem;
-        `;
-        successMsg.textContent = 'Thank you for your message. Our team will get back to you within 24 hours.';
-        contactForm.appendChild(successMsg);
-
-        setTimeout(function () {
-          contactForm.reset();
-          btn.textContent = originalText;
-          btn.disabled = false;
-          btn.style.background = '';
-          if (successMsg.parentNode) successMsg.parentNode.removeChild(successMsg);
-        }, 4000);
-      }, 1500);
+      window.location.href = `mailto:info@tourismmobilityservices.com?subject=${subject}&body=${body}`;
     });
   }
 
@@ -182,11 +167,12 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('[data-count]').forEach(function (el) {
     counterObserver.observe(el);
   });
-window.addEventListener('load', () => {
-  const loader = document.getElementById('loader-wrapper');
-  loader.classList.add('hidden');
 
-  // Remove from DOM after fade completes
-  setTimeout(() => loader.remove(), 500);
-});
+  window.addEventListener('load', () => {
+    const loader = document.getElementById('loader-wrapper');
+    loader.classList.add('hidden');
+
+    // Remove from DOM after fade completes
+    setTimeout(() => loader.remove(), 500);
+  });
 });
