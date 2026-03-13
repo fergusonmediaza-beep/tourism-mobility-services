@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
         `\nMessage:\n${message}`
       );
 
-      window.location.href = `mailto:info@tourismmobilityservices.com?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:petro.maseko@gmail.com?subject=${subject}&body=${body}`;
     });
   }
 
